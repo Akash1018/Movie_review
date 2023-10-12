@@ -8,7 +8,7 @@ export const fetchAndStoreMovies = async () => {
   
     while (totalMovies < 300) { // Fetch 10,000 movies
       try {
-        const response = await axios(`https://api.themoviedb.org/3/movie/upcoming?api_key=f0813082f58206e7891d2eb221cfba23&page=${page}&language=en-US`);
+        const response = await axios(`${process.env.REACT_APP_BACK_END}/movie/upcoming?api_key=f0813082f58206e7891d2eb221cfba23&page=${page}&language=en-US`);
         const movies = response.data.results;
         const genre = "Upcoming";
         for (const movie of movies) {

@@ -188,6 +188,30 @@ export const checkRating = async (req, res) => {
     }
 }
 
+export const watchedList = async (req, res) => {
+    console.log(1)
+    const userId = req.params.userId;
+    console.log(userId)
+    try {
+        const userRows = await queryAsync(db, 'SELECT movie_id FROM ratings WHERE user_id = ?', [userId]);
+        
+        const movieDataPromises = userRows.map(async (movie_id) => {
+            // Call an external API (e.g., replace 'your-movie-api-url' with the actual API URL)
+            const externalApiResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movie_id.movie_id}?api_key=f0813082f58206e7891d2eb221cfba23&language=en-US`);
+            // Extract the relevant movie data from the API response
+            const movieData = externalApiResponse.data;
+            
+            return movieData;
+        });
+        
+        const userMovieData = (await Promise.all(movieDataPromises));
+        
+        res.status(200).json(userMovieData);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 const queryAsync = async (db, sql, values) => {
     return new Promise((resolve, reject) => {
         db.query(sql, values, (err, rows) => {
