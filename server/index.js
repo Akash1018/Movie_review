@@ -5,9 +5,11 @@ import initializeDatabase from './models/db.js'
 import movieRoutes from './routes/movies.js'; 
 import userRoutes from './routes/users.js'
 import {fetchAndStoreMovies, dummyUsers} from './synthetic_data.js'
+import dotenv from 'dotenv'
 
 const app = express();
 const port = process.env.PORT || 8000;
+dotenv.config();
 
 // Middleware
 app.use(bodyParser.json());
