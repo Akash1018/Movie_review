@@ -15,16 +15,14 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filterGenre, setFilterGenre] = useState([]);
   const [genreTitle, setGenreTitle] = useState();
-  // eslint-disable-next-line
   const [color, setColor] = useState("grey");
   const genreforURL = useGenre(filterGenre);
 
-  // fetch Movies from TMDB
   const fetchMovieApi = async () => {
     try {
       const { data } = await axios.get(
         ` 
-      https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&with_genres=${genreforURL}
+      ${process.env.REACT_APP_BACK_END}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&with_genres=${genreforURL}
       `
       );
       setTreadingContent(data.results);
@@ -37,7 +35,7 @@ const Movies = () => {
 
   const fetchSearchApi = async () => {
     if (searchTerm) {
-      const SEARCH_API = `http://localhost:8000/movies/search/${searchTerm}`;
+      const SEARCH_API = `${process.env.REACT_APP_API_URL}/movies/search/${searchTerm}`;
       const { data } = await axios.get(SEARCH_API);
       console.log(data);
       setTreadingContent(data);
@@ -56,7 +54,6 @@ const Movies = () => {
     return () => {
       setTreadingContent();
     };
-    // eslint-disable-next-line
   }, [page, isLoading, genreforURL]);
 
   return (

@@ -14,7 +14,7 @@ const Movies = () => {
       console.log(user.result.id)
       const { data } = await axios.get(
       ` 
-      http://localhost:8000/movies//watchList/${user.result.id}
+      ${process.env.REACT_APP_API_URL}/movies//watchList/${user.result.id}
       `
       );
       console.log(99, data);

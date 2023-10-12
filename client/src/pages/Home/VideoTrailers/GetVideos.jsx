@@ -7,7 +7,7 @@
 
 //   const fetchVideosApi = async () => {
 //     const { data } = await axios.get(` 
-//       https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
+//       ${process.env.REACT_APP_BACK_END}/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
 //     setTrailer(data.results[0]?.key);
 //   };
 //   useEffect(() => {

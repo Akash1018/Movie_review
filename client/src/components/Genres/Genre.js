@@ -8,11 +8,7 @@ const Genre = ({
   media,
   setFilterGenre,
   setPage,
-  genreTitle,
   setGenreTitle,
-  setTreadingContent,
-  treadingContent,
-  handleRedirect,
 }) => {
   const [getGenre, setGetGenre] = useState([]);
   const navigate = useHistory();
@@ -22,7 +18,7 @@ const Genre = ({
     try {
       if (media) {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/genre/${media}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+          `${process.env.REACT_APP_BACK_END}/genre/${media}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
         );
         // eslint-disable-next-line
         setGetGenre(data.genres);

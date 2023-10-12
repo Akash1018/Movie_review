@@ -34,7 +34,7 @@ const SinglePage = () => {
   }
 
   const handleSubmit = async () => {
-    await axios.patch(`http://localhost:8000/movies//updateRating/${id}/${user.result.id}/${currentValue}`)
+    await axios.patch(`${process.env.REACT_APP_API_URL}/movies//updateRating/${id}/${user.result.id}/${currentValue}`)
     setCheckStar(!checkStar);
     setStar(currentValue)
   }
@@ -49,9 +49,9 @@ const SinglePage = () => {
   const handleChange = async (e) => {
     try {
       if(!watchList){
-        await axios.patch(`http://localhost:8000/movies/add/${user.result.id}/${id}`)
+        await axios.patch(`${process.env.REACT_APP_API_URL}/movies/add/${user.result.id}/${id}`)
       } else {
-        await axios.delete(`http://localhost:8000/movies/removeMovie/${user.result.id}/${id}`)
+        await axios.delete(`${process.env.REACT_APP_API_URL}/movies/removeMovie/${user.result.id}/${id}`)
       }
       setWatchList(!watchList);
     } catch (error) {
@@ -69,7 +69,7 @@ const SinglePage = () => {
   const fetchData = async () => {
     try {
       const { data } = await axios.get(` 
-      https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${process.env.REACT_APP_API_KEY}&page=1`);
+      ${process.env.REACT_APP_BACK_END}/${mediaType}/${id}?api_key=${process.env.REACT_APP_API_KEY}&page=1`);
       // eslint-disable-next-line
       setContent(data);
       setIsLoading(true);
@@ -82,7 +82,7 @@ const SinglePage = () => {
   const fetchSimilarMovies = async () => {
     try {
       const { data } = await axios.get(` 
-     https://api.themoviedb.org/3/${mediaType}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`);
+     ${process.env.REACT_APP_BACK_END}/${mediaType}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`);
       // eslint-disable-next-line
       const dataSlice = data.results;
       const filter = dataSlice.slice(0, 7);
@@ -104,7 +104,7 @@ const SinglePage = () => {
   const fetchVideos = async () => {
     try {
       const { data } = await axios.get(` 
-     https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
+     ${process.env.REACT_APP_BACK_END}/${mediaType}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
 
       setVideo(data.results[0].key);
       setIsLoading(true);
@@ -116,7 +116,7 @@ const SinglePage = () => {
   };
   const fetchStar = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/movies/checkRating/${user.result.id}/${id}`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/checkRating/${user.result.id}/${id}`);
       if(data.Available){
         setStar(data.value);
         setCurrentValue(data.value)
@@ -131,7 +131,7 @@ const SinglePage = () => {
 
   const fetchList = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/movies/checkList/${user.result.id}/${id}`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/checkList/${user.result.id}/${id}`);
 
       if(data){
         setWatchList(data);

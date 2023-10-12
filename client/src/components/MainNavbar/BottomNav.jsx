@@ -34,7 +34,6 @@ export default function BottomNav() {
     if (value === "home") history.push("/");
     else if (value === "trend") history.push("/all-movies");
     else if (value === "movies") history.push("/all-movies");
-    // eslint-disable-next-line
   }, [value, history]);
 
   return (

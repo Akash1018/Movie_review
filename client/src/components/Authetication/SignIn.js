@@ -25,7 +25,7 @@ const Auth = () => {
             setCheck(check+1);
           }
           //else dispatch(signup(formData, navigate ));
-          const res = await axios.post("http://localhost:8000/users/signup", formData)
+          const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, formData)
           if(res.data.token){
             setIsSignup(2);
           }
@@ -35,7 +35,7 @@ const Auth = () => {
         setError(error+1);
         console.log(formData);
          // dispatch(signin(formData, navigate ));
-        const res = await axios.post("http://localhost:8000/users/signin", formData)
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/signin`, formData)
         console.log(res.data);
         if(res.data.token){
           localStorage.setItem('profile', JSON.stringify({ ...res?.data }));

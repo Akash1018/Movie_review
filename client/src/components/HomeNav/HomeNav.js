@@ -4,14 +4,13 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// const handleDragStart = (e) => e.preventDefault();
 
 const HomeNav = () => {
   const [allContent, setAllContent] = useState([]);
   const history = useHistory();
 
   const handleClick = (id, media) => {
-    history.push(`/${media}/${id}/`);
+    history.push(`/movie/${id}/`);
   };
   const items = allContent.map((item) => (
     <div
@@ -37,7 +36,7 @@ const HomeNav = () => {
   const fetchPopularMovieApi = async () => {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
+        `${process.env.REACT_APP_BACK_END}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
       );
       const alldata = data.results;
       const filter = alldata.slice(0, 10);

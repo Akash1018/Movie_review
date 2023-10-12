@@ -18,7 +18,7 @@ const Home = () => {
 
   const fetchPopularMovieApi = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/movies/popular`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/popular`);
       console.log(data)
       const alldata = data.movies;
       console.log(data);
@@ -31,7 +31,7 @@ const Home = () => {
   };
   const fetchTopRatedApi = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/movies/top_rated`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/top_rated`);
       const alldata = data.movies;
       const filter = alldata.slice(0, 6);
       setTopRated(filter);
@@ -43,7 +43,7 @@ const Home = () => {
 
   const fetchUpcomingApi = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/movies/upcoming`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/upcoming`);
       const alldata = data.movies;
       const filter = alldata.slice(0, 6);
       setRandom(filter);

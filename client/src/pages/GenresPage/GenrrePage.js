@@ -27,7 +27,7 @@ const Movies = () => {
   const fetchMovieApi = async () => {
     const { data } = await axios.get(
       ` 
-      https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&with_genres=${genreforURL}
+      ${process.env.REACT_APP_BACK_END}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&with_genres=${genreforURL}
       `
     );
 
