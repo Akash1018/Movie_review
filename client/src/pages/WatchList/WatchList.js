@@ -7,18 +7,18 @@ const Movies = () => {
   const [treadingContent, setTreadingContent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [color, setColor] = useState("grey");
+  const [view, setView] = useState(0);
 
   const fetchMovieApi = async () => {
     try {
       const user  = JSON.parse(localStorage.getItem('profile'))
-      console.log(user.result.id)
-      const { data } = await axios.get(
-      ` 
-      ${process.env.REACT_APP_API_URL}/movies//watchList/${user.result.id}
-      `
-      );
-      console.log(99, data);
-      setTreadingContent(data);
+      if(!view){
+        const { data } = await axios.get(` ${process.env.REACT_APP_API_URL}/movies//watchList/${user.result.id}`);
+        setTreadingContent(data);
+      } else {
+        const { data } = await axios.get(` ${process.env.REACT_APP_API_URL}/movies//watchedList/${user.result.id}`);
+        setTreadingContent(data);
+      }
       setIsLoading(true);
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ const Movies = () => {
     return () => {
       setTreadingContent();
     };
-  }, [ isLoading ]);
+  }, [ isLoading, view ]);
 
   return (
     <>
@@ -44,16 +44,16 @@ const Movies = () => {
         
         <div className="myList">
             <div className="btn-login">
-                <button className="login-btn">My List</button>
+                <button className={`login-btn ${!view ? 'active' : ''}`} onClick={() => setView(0)} >My List</button>
             </div>
             <div className="btn-login">
-                <button className="login-btn">Watched</button>
+                <button className={`login-btn ${view ? 'active' : ''}`} onClick={() => setView(1)} >Watched</button>
             </div>
-          </div>
+        </div>
         <div className="ListContent">
           {isLoading && treadingContent ? (
             treadingContent.map((n) => (
-              <SingleData key={n.id} {...n} mediaType="movie" />
+              <SingleData key={n.id} {...n} value ="watchList" mediaType="movie" />
             ))
           ) : (
             <div

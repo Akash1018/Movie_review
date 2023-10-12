@@ -38,6 +38,12 @@
   color: #fff;
   transform: scale(1.1);
 }
+.login-btn.active {
+  background-color: #652ee5;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  transform: scale(1.1);
+}
 .open__modal .poster__img {
   z-index: 1000;
   z-index: 1000;

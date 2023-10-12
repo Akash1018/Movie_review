@@ -22,7 +22,9 @@ const SingleData = ({
   vote_average,
   mediaType,
   media_type,
+  value
 }) => {
+  console.log(value)
   const history = useHistory();
   const rate = rating ? rating : vote_average
   const handleClick = () => {
