@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination2 from "../../components/Pagination/Pagination";
-import LocalSearch from "../../components/Search/LocalSearch";
 import SingleData from "../../components/SingleData/SingleData";
 import Myloader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
@@ -14,7 +13,7 @@ const override = css`
   border-color: red;
 `;
 const Movies = () => {
-  const [treadingContent, setTreadingContent] = useState([]);
+  const [trendingContent, setTrendingContent] = useState([]);
   const [page, setPage] = useState(1);
   const [numOfPages, setNumOfPages] = useState();
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,7 +31,7 @@ const Movies = () => {
     );
 
     // eslint-disable-next-line
-    setTreadingContent(data.results);
+    setTrendingContent(data.results);
     // eslint-disable-next-line
     setNumOfPages(100);
     setIsLoading(true);
@@ -44,7 +43,7 @@ const Movies = () => {
     fetchMovieApi();
 
     return () => {
-      setTreadingContent();
+      setTrendingContent();
     };
     // eslint-disable-next-line
   }, [page, isLoading, genreforURL]);
@@ -63,7 +62,7 @@ const Movies = () => {
           media="movie"
           setFilterGenre={setFilterGenre}
           filterGenre={filterGenre}
-          setTreadingContent={setTreadingContent}
+          setTrendingContent={setTrendingContent}
           setPage={setPage}
           page={page}
         />
@@ -82,22 +81,16 @@ const Movies = () => {
       </div>
 
       <div className="ListContent">
-        {isLoading && treadingContent ? (
-          treadingContent.map((n) => (
+        {isLoading && trendingContent ? (
+          trendingContent.map((n) => (
             <SingleData key={n.id} {...n} mediaType="movie" />
           ))
         ) : (
-          // <ReactBootStrap.Spinner animation="border" variant="danger" />
           <div className="loading" style={{ height: "400px" }}>
             <Myloader color={color} size={80} />
           </div>
         )}
-        {/* {treadingContent &&
-          treadingContent.map((n) => (
-            <SingleData key={n.id} {...n} mediaType="movie" />
-          ))} */}
-
-        {searchTerm && !treadingContent && <h2>NO Series Found </h2>}
+        {searchTerm && !trendingContent && <h2>NO Series Found </h2>}
       </div>
       <Pagination2
         setPage={setPage}

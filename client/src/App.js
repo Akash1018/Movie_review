@@ -29,7 +29,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       ) : (
-        <div className="load_app" style={{ height: "400px" }}>
+        <div className="load_app" style={{ height: "600px" }}>
           <Myloader
             color={color}
             size={80}

@@ -19,9 +19,7 @@ const Home = () => {
   const fetchPopularMovieApi = async () => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/movies/popular`);
-      console.log(data)
       const alldata = data.movies;
-      console.log(data);
       const filter = alldata.slice(0, 6);
       setAllContent(filter);
       setIsLoading(true);

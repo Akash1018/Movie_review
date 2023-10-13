@@ -19,7 +19,7 @@ const Auth = () => {
     //const dispatch = useDispatch();
     const history = useHistory();
     const handleSubmit = async (e) => {
-        e.preventDefault(); //to get console.log() in react.
+       e.preventDefault(); 
        if(isSignup == 0){
           if(formData.password != formData.confirmPassword){
             setCheck(check+1);
@@ -33,10 +33,8 @@ const Auth = () => {
           //dispatch(forgotPassword(formData, navigate));
        } else {
         setError(error+1);
-        console.log(formData);
          // dispatch(signin(formData, navigate ));
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/users/signin`, formData)
-        console.log(res.data);
         if(res.data.token){
           localStorage.setItem('profile', JSON.stringify({ ...res?.data }));
           history.push(`/user/${res.data.result.id}`)

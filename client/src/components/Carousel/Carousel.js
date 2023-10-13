@@ -59,7 +59,6 @@ const Gallery = ({ mediaType, id }) => {
       ${process.env.REACT_APP_BACK_END}/${mediaType}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
       const dataSlice = data.cast;
       setCredits(dataSlice);
-      console.log(data);
 
       // eslint-disable-next-line
     } catch (error) {

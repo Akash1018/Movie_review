@@ -164,8 +164,6 @@ const SinglePage = () => {
     alignItems: 'center',
     zIndex: 999, // Ensure the overlay is on top of other content
   };
-  console.log(102,user)
-  console.log(103,watchList)
   return (
     <>
       {isLoading ? (

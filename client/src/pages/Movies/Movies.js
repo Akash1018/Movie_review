@@ -37,7 +37,6 @@ const Movies = () => {
     if (searchTerm) {
       const SEARCH_API = `${process.env.REACT_APP_API_URL}/movies/search/${searchTerm}`;
       const { data } = await axios.get(SEARCH_API);
-      console.log(data);
       setTreadingContent(data);
       setNumOfPages(data.total_pages);
       setIsLoading(true);
