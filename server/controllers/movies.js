@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getMovies = async (req,res) => {
     try{
-        const sql = 'SELECT * FROM movies where genre = ? ';
+        const sql = 'SELECT * FROM movies where genre = ? ORDER BY RAND() LIMIT 8';
         db.query(sql,[req.params.genre], (err, rows) => {
             if (err) {
             res.status(500).json({ error: err.message });
