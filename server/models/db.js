@@ -33,7 +33,7 @@ const initializeDatabase = () => {
     password VARCHAR(255),
     movies TEXT
   )`;
-  const createRatingTable = `CREATE TABLE ratings (
+  const createRatingTable = `CREATE TABLE IF NOT EXISTS ratings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     movie_id INT,
