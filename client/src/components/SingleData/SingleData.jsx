@@ -21,9 +21,12 @@ const SingleData = ({
   rating,
   vote_average,
   mediaType,
-  media_type,
-  value
+  media_type
 }) => {
+  let check;
+  if(title){
+    check = !title.includes("?")
+  }
   const history = useHistory();
   const rate = rating ? rating : vote_average
   const handleClick = () => {
@@ -38,7 +41,6 @@ const SingleData = ({
       return "red";
     }
   };
-
   return (
     <>
       <div
@@ -66,11 +68,11 @@ const SingleData = ({
           />
           {/* <button >Read More</button> */}
         </div>
-        <div className="SingleDataDetails">
+         {check && <div className="SingleDataDetails">
           <h6>
             {title || name}
           </h6>
-        </div>
+        </div>}
       </div>
     </>
   );

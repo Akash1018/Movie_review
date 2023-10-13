@@ -47,6 +47,7 @@ export default function LocalSearch({ setSearchTerm, fetchSearchApi }) {
             <div
               className="btn btn-primary brn-sm search__icon"
               onClick={handleSearch}
+              style={{textAlign: "center"}}
             >
               Search
             </div>

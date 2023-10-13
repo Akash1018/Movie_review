@@ -12,6 +12,7 @@ import StarIcon from '@mui/icons-material/Star';
 import Carousel from "../Carousel/Carousel";
 import { FaStar } from "react-icons/fa";
 import { styles , colors} from './StarRating'
+import zIndex from "@mui/material/styles/zIndex";
 
 const SinglePage = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -210,15 +211,23 @@ const SinglePage = () => {
                       content.release_date ||
                       "-----"
                     ).substring(0, 4)}{" "}
-                    .
+                    &nbsp;
                     <b className="title_me">
-                      {mediaType === "tv" ? "Tv Series ." : "Movie ."}
-                    </b>
+                      {mediaType === "tv" ? "Tv Series" : "Movie"}
+                    </b>&nbsp;
                     <b className="vote_back">
                       <b className="tmdb">Rating</b>
-                      <b className="vote_ave">-⭐{content.vote_average}</b>
+                      <b className="vote_ave">-⭐{content.vote_average.toFixed(1)}</b>
                     </b>
                   </div>
+                  {(user && (star ?
+                  <div style={{zIndex:"1", marginLeft:"5px", marginBottom:"5px"}}>
+                    <b className="">
+                        <b className="tmdb yourRating">Your Rating</b>
+                        <b className="vote_ave">-⭐{star}</b>
+                    </b>
+                  </div>:<></>
+                  ))}
                   <h5
                     style={{
                       display: "flex",
@@ -239,7 +248,6 @@ const SinglePage = () => {
                       );
                     })}
                   </h5>
-
                   <div className="videopage">
                     {content && (
                       <SingleVideoPage trailer={video} title={content.title} />

@@ -194,6 +194,11 @@ Link {
   .genre {
     border-radius: none !important;
   }
+  .all__movies {
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
   .view__more p {
     padding-bottom: 0 !important;
     margin-top: 18px !important;
@@ -205,6 +210,11 @@ Link {
   .ListContent2 {
     padding: 0 !important;
   }
+  .all__movies {
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
   .TreadingHome3 {
     padding: 0 5px !important;
   }
@@ -213,6 +223,11 @@ Link {
   .all {
     height: 1000px !important;
   }
+  .all__movies {
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
   .all::after {
   }
   .TrailerContent {
